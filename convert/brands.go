@@ -12,16 +12,6 @@ func brandsToBrandsPB(brands []model.Brand) []*model.BrandPB {
 	return result
 }
 
-func brandsToBrandsPB2(brands []model.Brand) []*model.BrandPB {
-	result := make([]*model.BrandPB, 0, len(brands))
-
-	for _, brand := range brands {
-		result = append(result, brandToBrandPB(&brand))
-	}
-
-	return result
-}
-
 func brandToBrandPB(brand *model.Brand) *model.BrandPB {
 	return &model.BrandPB{
 		Title:       brand.Title,
