@@ -58,7 +58,7 @@
 > 
 > The compiler can now inline functions with non-labeled for loops, method values, and type switches. The inliner can also detect more indirect calls where inlining is possible.
 
-Здесь не указано про if statements.
+Однако здесь не указано про if statements.
 
 В https://go.dev/wiki/CompilerOptimizations#function-inlining указано, что функции должны быть "simple enough" и не иметь сложных конструкций типа defer, select и т.д.
 Возможно в следующих версиях инлайнер перестанет "спотыкаться" об if условия и сможет заинлайнить и с циклами и с условиями внутри циклов.
