@@ -16,9 +16,9 @@ func ItemsToPBItems2(items []model.Item) []*model.ItemPB {
 	var result []*model.ItemPB
 
 	for _, item := range items {
-		//if !item.IsActive || len(item.Title) < 100 {
-		//	continue
-		//}
+		if !item.IsActive || len(item.Title) < 100 {
+			continue
+		}
 
 		result = append(result, ItemToPBItem(item))
 	}
