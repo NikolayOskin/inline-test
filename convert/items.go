@@ -2,17 +2,19 @@ package convert
 
 import "inline-test/model"
 
+// ItemsToPBItems - упрощенная версия конвертера.
 func ItemsToPBItems(items []model.Item) []*model.ItemPB {
 	var result []*model.ItemPB
 
 	for _, item := range items {
-		result = append(result, ItemToPBItem(item))
+		result = append(result, itemToPBItem(item))
 	}
 
 	return result
 }
 
-func ItemsToPBItems2(items []model.Item) []*model.ItemPB {
+// ItemsToPBItemsComplex - более сложная версия конвертера, отличающаяся наличием if statement'a внутри цикла.
+func ItemsToPBItemsComplex(items []model.Item) []*model.ItemPB {
 	var result []*model.ItemPB
 
 	for _, item := range items {
@@ -20,13 +22,13 @@ func ItemsToPBItems2(items []model.Item) []*model.ItemPB {
 			continue
 		}
 
-		result = append(result, ItemToPBItem(item))
+		result = append(result, itemToPBItem(item))
 	}
 
 	return result
 }
 
-func ItemToPBItem(item model.Item) *model.ItemPB {
+func itemToPBItem(item model.Item) *model.ItemPB {
 	return &model.ItemPB{
 		ID:          item.ID,
 		Title:       item.Title,

@@ -7,6 +7,7 @@
 Для чистоты эксперимента были созданы две версии конвертора, в одной из которых код намерено усложнен путем добавления if statements.
 
 Функции конвертаций размещены в отдельном пакете в отдельных файлах.
+Модели тоже размещены в отдельном пакете в отдельных файлах (имитация расположения файлов/пакетов в типичном микросервисе)
 
 Некоторые конвертации принимают на вход модели по значению, некоторые по указателю.
 
@@ -26,7 +27,7 @@
 ./main.go:33:34: inlining call to convert.brandToBrandPB
 ```
 
-Попробуем закомментировать if statements во второй версии конвертора `convert.ItemsToPBItems2` и сбилдим еще раз.
+Попробуем закомментировать if statements в более сложной версии конвертора `convert.ItemsToPBItemsComplex` и сбилдим еще раз.
 ```go
 		//if !item.IsActive || len(item.Title) < 100 {
 		//	continue
@@ -41,16 +42,17 @@
 ./main.go:58:31: inlining call to time.(*Time).nsec
 ./main.go:58:31: inlining call to time.(*Time).sec
 ./main.go:33:34: inlining call to convert.ItemsToPBItems
-./main.go:33:34: inlining call to convert.ItemToPBItem
+./main.go:33:34: inlining call to convert.itemToPBItem
 ./main.go:33:34: inlining call to convert.brandsToBrandsPB
 ./main.go:33:34: inlining call to convert.brandToBrandPB
-./main.go:53:35: inlining call to convert.ItemsToPBItems2
-./main.go:53:35: inlining call to convert.ItemToPBItem
-./main.go:53:35: inlining call to convert.brandsToBrandsPB
-./main.go:53:35: inlining call to convert.brandToBrandPB
+./main.go:53:41: inlining call to convert.ItemsToPBItemsComplex
+./main.go:53:41: inlining call to convert.itemToPBItem
+./main.go:53:41: inlining call to convert.brandsToBrandsPB
+./main.go:53:41: inlining call to convert.brandToBrandPB
+
 
 ```
-Видно, что теперь заинлайнился и вызов функции `convert.ItemsToPBItems2` (и всех вложенных).
+Видно, что теперь заинлайнился и вызов функции `convert.ItemsToPBItemsComplex` (и всех вложенных).
 
 В версии 1.16 были добавлены некоторые улучшения по части inline'а функций.
 

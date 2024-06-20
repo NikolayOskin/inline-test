@@ -50,7 +50,7 @@ func moreComplexCase() {
 		})
 	}
 
-	result := convert.ItemsToPBItems2(items)
+	result := convert.ItemsToPBItemsComplex(items)
 	_ = len(result)
 }
 
